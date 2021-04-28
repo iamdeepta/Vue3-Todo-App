@@ -71,7 +71,6 @@ export default {
     deleteTask(index) {
       //let x = this.todoTasks.indexOf(this.todoTasks[index]);
       //this.$refs.style.textDecoration = "line-through";
-
       let x = document.getElementById("text" + index);
       x.style.textDecoration = "line-through";
       x.style.color = "gray";
