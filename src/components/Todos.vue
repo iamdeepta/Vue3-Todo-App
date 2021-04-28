@@ -15,19 +15,28 @@
         </p>
       </form>
     </div>
-    <table class="table table-responsive">
-      <div
+    <table class="table">
+      <tr
         class="row todo_list"
         v-for="(datas, index) in todoTasks"
         :key="index"
       >
-        <h6 :id="'text' + index" :ref="'text' + index">
-          {{ index + 1 }}. {{ datas.toUpperCase() }}
-        </h6>
-        <button class="btn btn-danger btn-sm" @click="deleteTask(index)">
-          -
-        </button>
-      </div>
+        <td style="width: 60%">
+          <h6 :id="'text' + index" :ref="'text' + index">
+            {{ index + 1 }}. {{ datas.toUpperCase() }}
+          </h6>
+        </td>
+        <td style="width: 20%"></td>
+        <td>
+          <button
+            :id="'delete_btn' + index"
+            class="btn btn-danger btn-sm"
+            @click="deleteTask(index)"
+          >
+            x
+          </button>
+        </td>
+      </tr>
     </table>
   </div>
 </template>
@@ -50,7 +59,6 @@ export default {
         this.todoTasks.push(this.taskList);
         this.serial = this.serial + 1;
         this.taskList = null;
-
         this.errors = "";
       } else if (this.taskList == null) {
         this.errors = "Please write something!";
@@ -65,6 +73,8 @@ export default {
 
       let x = document.getElementById("text" + index);
       x.style.textDecoration = "line-through";
+      let y = document.getElementById("delete_btn" + index);
+      y.style.display = "none";
       //this.todoTasks.splice(index, 1);
     },
   },
