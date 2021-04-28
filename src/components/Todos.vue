@@ -15,14 +15,20 @@
         </p>
       </form>
     </div>
-    <div class="row todo_list" v-for="(datas, index) in todoTasks" :key="index">
-      <h6 :id="'text' + index" :ref="'text' + index">
-        {{ index + 1 }}. {{ datas.toUpperCase() }}
-      </h6>
-      <button class="btn btn-danger btn-sm" @click="deleteTask(index)">
-        -
-      </button>
-    </div>
+    <table class="table table-responsive">
+      <div
+        class="row todo_list"
+        v-for="(datas, index) in todoTasks"
+        :key="index"
+      >
+        <h6 :id="'text' + index" :ref="'text' + index">
+          {{ index + 1 }}. {{ datas.toUpperCase() }}
+        </h6>
+        <button class="btn btn-danger btn-sm" @click="deleteTask(index)">
+          -
+        </button>
+      </div>
+    </table>
   </div>
 </template>
 

@@ -1,5 +1,5 @@
 {
-  "name": "vue-todos",
+  "name": "vue-3-todos",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -41,5 +41,5 @@
     "not dead"
   ],
   "keywords": [],
-  "description": "It is a to-do app made with vuejs"
+  "description": "It is a todo app made with vue 3"
 }
