@@ -34,9 +34,23 @@
           :key="index"
         >
           <td style="width: 60%">
-            <h6 :id="'text' + index" :ref="'text' + index">
+            <h6
+              :id="'text' + index"
+              :ref="'text' + index"
+              @click="edit(index)"
+              style="cursor: pointer"
+            >
               {{ index + 1 }}. {{ datas.toUpperCase() }}
             </h6>
+            <form @submit.prevent="updateTask(index)">
+              <input
+                type="text"
+                :id="'task_input1' + index"
+                class="task_input1 form-control col-md-10"
+                :value="datas.toUpperCase()"
+                style="display: none"
+              />
+            </form>
           </td>
           <td style="width: 20%"></td>
           <td>
@@ -93,6 +107,18 @@ export default {
       z.style.display = "block";
       //this.todoTasks.push(this.todoTasks[index])
       //this.todoTasks.splice(index, 1);
+    },
+
+    edit(index) {
+      document.getElementById("text" + index).style.display = "none";
+      document.getElementById("task_input1" + index).style.display = "block";
+    },
+
+    updateTask(index) {
+      //if (this.taskList[index] != null) {
+      let edited_val = this.todoTasks.splice(index, 1);
+      this.taskList[index] = edited_val;
+      //}
     },
   },
 };
