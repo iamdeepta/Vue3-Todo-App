@@ -16,7 +16,9 @@
       </form>
     </div>
     <div class="row todo_list" v-for="(datas, index) in todoTasks" :key="index">
-      <h6>{{ index + 1 }}. {{ datas.toUpperCase() }}</h6>
+      <h6 :id="'text' + index" :ref="'text' + index">
+        {{ index + 1 }}. {{ datas.toUpperCase() }}
+      </h6>
       <button class="btn btn-danger btn-sm" @click="deleteTask(index)">
         -
       </button>
@@ -53,8 +55,11 @@ export default {
     },
     deleteTask(index) {
       //let x = this.todoTasks.indexOf(this.todoTasks[index]);
+      //this.$refs.style.textDecoration = "line-through";
 
-      this.todoTasks.splice(index, 1);
+      let x = document.getElementById("text" + index);
+      x.style.textDecoration = "line-through";
+      //this.todoTasks.splice(index, 1);
     },
   },
   // updated() {
