@@ -74,6 +74,7 @@ export default {
 
       let x = document.getElementById("text" + index);
       x.style.textDecoration = "line-through";
+      x.style.color = "gray";
       let y = document.getElementById("delete_btn" + index);
       y.style.display = "none";
       let z = document.getElementById("tick_btn" + index);
