@@ -35,6 +35,7 @@
           >
             x
           </button>
+          <span :id="'tick_btn' + index" style="display: none"> ✅ </span>
         </td>
       </tr>
     </table>
@@ -75,6 +76,9 @@ export default {
       x.style.textDecoration = "line-through";
       let y = document.getElementById("delete_btn" + index);
       y.style.display = "none";
+      let z = document.getElementById("tick_btn" + index);
+      z.style.display = "block";
+
       //this.todoTasks.splice(index, 1);
     },
   },
