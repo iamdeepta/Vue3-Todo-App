@@ -1,22 +1,25 @@
 <template>
-  <div class="main container col-md-4">
+  <div class="card main container col-md-4">
     <div class="input">
       <form @submit.prevent="addTask">
         <div class="row">
           <input
             type="text"
-            class="task_input form-control col-md-6"
+            class="task_input form-control col-md-10"
             v-model="taskList"
           />
-          <button class="btn btn-primary col-md-4">+</button>
+          <button type="submit" class="btn btn-primary col-md-1 ml-1">+</button>
         </div>
         <p style="color: red; font-size: 12px; margin-top: 13px">
           {{ errors }}
         </p>
       </form>
     </div>
-    <div class="todo_list" v-for="datas in todoTasks" :key="datas">
-      {{ datas.toUpperCase() }}
+    <div class="row todo_list" v-for="(datas, index) in todoTasks" :key="index">
+      <h6>{{ index + 1 }}. {{ datas.toUpperCase() }}</h6>
+      <button class="btn btn-danger btn-sm" @click="deleteTask(index)">
+        -
+      </button>
     </div>
   </div>
 </template>
@@ -37,6 +40,7 @@ export default {
     addTask() {
       if (this.taskList != null) {
         this.todoTasks.push(this.taskList);
+        this.serial = this.serial + 1;
         this.taskList = null;
 
         this.errors = "";
@@ -46,6 +50,11 @@ export default {
           this.errors = "";
         }, 3000);
       }
+    },
+    deleteTask(index) {
+      //let x = this.todoTasks.indexOf(this.todoTasks[index]);
+
+      this.todoTasks.splice(index, 1);
     },
   },
   // updated() {
@@ -60,4 +69,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.main {
+  padding: 50px;
+}
+</style>
