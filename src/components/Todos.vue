@@ -62,15 +62,6 @@ export default {
       //this.todoTasks.splice(index, 1);
     },
   },
-  // updated() {
-  //   if (this.taskList == null) {
-  //     this.errors = "Please write something!";
-  //   }
-  // },
-
-  // created() {
-  //   this.todoTasks = Data;
-  // },
 };
 </script>
 
