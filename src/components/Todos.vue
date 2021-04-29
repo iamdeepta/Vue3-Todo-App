@@ -35,7 +35,6 @@
         >
           <td style="width: 60%">
             <h6
-              :id="'text' + index"
               :ref="'text' + index"
               @click="edit(index)"
               style="cursor: pointer"
@@ -45,22 +44,28 @@
             <form @submit.prevent="updateTask(index)">
               <input
                 type="text"
-                :id="'task_input1' + index"
+                :ref="'task_input1' + index"
                 class="task_input1 form-control col-md-10"
                 :value="datas.toUpperCase()"
+                style="display: none"
               />
+              <span
+                :ref="'input_error' + index"
+                style="color: red; font-size: 12px; display: none"
+                >Write Something!</span
+              >
             </form>
           </td>
           <td style="width: 20%"></td>
           <td>
             <button
-              :id="'delete_btn' + index"
+              :ref="'delete_btn' + index"
               class="btn btn-danger btn-sm"
               @click="deleteTask(index)"
             >
               x
             </button>
-            <span :id="'tick_btn' + index" style="display: none"> ✅ </span>
+            <span :ref="'tick_btn' + index" style="display: none"> ✅ </span>
           </td>
         </tr>
       </table>
@@ -98,28 +103,34 @@ export default {
     deleteTask(index) {
       //let a = this.todoTasks.indexOf(this.todoTasks[index]);
       //this.$refs.style.textDecoration = "line-through";
-      let x = document.getElementById("text" + index);
+      let x = this.$refs["text" + index];
       x.style.textDecoration = "line-through";
       x.style.color = "gray";
-      let y = document.getElementById("delete_btn" + index);
+      let y = this.$refs["delete_btn" + index];
       y.style.display = "none";
-      let z = document.getElementById("tick_btn" + index);
+      let z = this.$refs["tick_btn" + index];
       z.style.display = "block";
       //this.todoTasks.push(this.todoTasks[index])
       //this.todoTasks.splice(index, 1);
     },
 
     edit(index) {
-      document.getElementById("text" + index).style.display = "none";
-      document.getElementById("task_input1" + index).style.display = "block";
+      this.$refs["text" + index].style.display = "none";
+      this.$refs["task_input1" + index].style.display = "block";
     },
 
     updateTask(index) {
-      let val = document.getElementById("task_input1" + index).value;
-      this.todoTasks[index] = val;
-      console.log(this.todoTasks[index]);
-      document.getElementById("text" + index).style.display = "block";
-      document.getElementById("task_input1" + index).style.display = "none";
+      let val = this.$refs["task_input1" + index].value;
+      if (val !== "") {
+        this.todoTasks[index] = val;
+        //console.log(this.todoTasks[index]);
+        this.$refs["text" + index].style.display = "block";
+        this.$refs["task_input1" + index].style.display = "none";
+
+        this.$refs["input_error" + index].style.display = "none";
+      } else {
+        this.$refs["input_error" + index].style.display = "block";
+      }
     },
   },
 };
