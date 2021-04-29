@@ -1,6 +1,8 @@
 # Vue3 To Do App
 
-## Project Features
+It is a to do app made with vue 3
+
+## App Features
 
 1. User can create to do list
 2. Completed task can be line through by pressing cross button
