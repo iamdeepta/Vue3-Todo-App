@@ -48,8 +48,6 @@
                 :id="'task_input1' + index"
                 class="task_input1 form-control col-md-10"
                 :value="datas.toUpperCase()"
-                
-                style="display: none"
               />
             </form>
           </td>
@@ -117,14 +115,11 @@ export default {
     },
 
     updateTask(index) {
-      //if (this.taskList[index] != null) {
-      let edited_val = this.todoTasks.splice(index, 1);
-      //this.taskList[index] = edited_val;
-      console.log(edited_val);
+      let val = document.getElementById("task_input1" + index).value;
+      this.todoTasks[index] = val;
       console.log(this.todoTasks[index]);
       document.getElementById("text" + index).style.display = "block";
       document.getElementById("task_input1" + index).style.display = "none";
-      //}
     },
   },
 };
