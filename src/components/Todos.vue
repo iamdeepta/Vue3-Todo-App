@@ -28,6 +28,11 @@
         </form>
       </div>
       <table class="table">
+        <div v-if="todo_text" style="margin-top: 20px">
+          <span style="margin-top: 120px"
+            >Make your list of <span style="color: green">ToDos</span></span
+          >
+        </div>
         <tr
           class="row todo_list"
           v-for="(datas, index) in todoTasks"
@@ -45,9 +50,9 @@
               <input
                 type="text"
                 :ref="'task_input1' + index"
-                class="task_input1 form-control col-md-10"
+                class="task_input1 form-control col-md-12"
                 :value="datas.toUpperCase()"
-                style="display: none"
+                style="display: none; text-align: center"
               />
               <span
                 :ref="'input_error' + index"
@@ -83,6 +88,8 @@ export default {
       updatedTaskList: null,
       todoTasks: [],
       errors: "",
+      todo_text: true,
+      delete_mark: "",
     };
   },
 
@@ -93,6 +100,7 @@ export default {
         this.serial = this.serial + 1;
         this.taskList = null;
         this.errors = "";
+        this.todo_text = false;
       } else if (this.taskList == null) {
         this.errors = "Please write something!";
         setTimeout(() => {
@@ -106,6 +114,7 @@ export default {
       let x = this.$refs["text" + index];
       x.style.textDecoration = "line-through";
       x.style.color = "gray";
+
       let y = this.$refs["delete_btn" + index];
       y.style.display = "none";
       let z = this.$refs["tick_btn" + index];
@@ -115,8 +124,16 @@ export default {
     },
 
     edit(index) {
-      this.$refs["text" + index].style.display = "none";
-      this.$refs["task_input1" + index].style.display = "block";
+      if (this.$refs["text" + index].style.color !== "gray") {
+        this.$refs["text" + index].style.display = "none";
+        this.$refs["task_input1" + index].style.display = "block";
+      } else {
+        this.$refs["input_error" + index].style.display = "block";
+        this.$refs["input_error" + index].innerHTML = "You cannot update this!";
+        setTimeout(() => {
+          this.$refs["input_error" + index].style.display = "none";
+        }, 2000);
+      }
     },
 
     updateTask(index) {
