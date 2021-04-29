@@ -75,11 +75,13 @@
         </tr>
       </table>
     </div>
+    <Footer />
   </div>
 </template>
 
 <script>
 //import Data from "../data.js";
+import Footer from "./Footer.vue";
 export default {
   name: "Todos",
   data() {
@@ -91,6 +93,9 @@ export default {
       todo_text: true,
       delete_mark: "",
     };
+  },
+  components: {
+    Footer,
   },
 
   methods: {
