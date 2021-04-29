@@ -1,12 +1,19 @@
 <template>
   <div class="card-footer text-muted">
-    <span class="footer">COPYRIGHT © 2021 DESIGNED BY DEEPTA BARUA</span>
+    <span class="footer"
+      >COPYRIGHT © {{ fullYear }} DESIGNED BY DEEPTA BARUA</span
+    >
   </div>
 </template>
 
 <script>
 export default {
   name: "Footer",
+  data() {
+    return {
+      fullYear: new Date().getFullYear(),
+    };
+  },
 };
 </script>
 
